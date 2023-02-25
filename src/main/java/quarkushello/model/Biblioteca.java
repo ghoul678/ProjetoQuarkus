@@ -1,15 +1,23 @@
 package quarkushello.model;
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
 public class Biblioteca extends PanacheEntity{
-
+    @Id
     Integer idLivro ;
+    @Column
     Date dataCompra;
+    @Column
     Integer quantidade;
+    @Column
     String descricao;
+    @Column
     double localEstante;
 
     public Integer getIdLivro() {
