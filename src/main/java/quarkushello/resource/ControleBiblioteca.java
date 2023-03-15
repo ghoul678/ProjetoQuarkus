@@ -1,4 +1,11 @@
 package quarkushello.resource;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.transaction.Transactional;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -6,42 +13,36 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import com.arjuna.ats.internal.jdbc.drivers.modifiers.list;
-
-import java.util.Date;
-import java.util.List;
 
 import quarkushello.model.Biblioteca;
+import quarkushello.repository.Bibliotecarepository;
+import quarkushello.repository.Bibliotecarepository;
 
-import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 
-@Path("/Biblioteca")
+@Path("/biblioteca")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class ControleBiblioteca {
    
-    /* @POST
-    @Produces (MediaType.APPLICATION_JSON)
-    @Consumes (MediaType.APPLICATION_JSON)
-    @Transactional
-    public Biblioteca inserte(Biblioteca teste){
-        teste.setIdLivro(1);
-        teste.setDescricao("Quarkus");
-        teste.setLocalEstante(0055);
-       teste.persist();
-        return teste;
-    } */
+    @Inject
+    private Bibliotecarepository repository;
+    
+    @GET
+    public List<Biblioteca> getAll() {
+        
+        // seleciona todas as Bibliotecas do banco de dados
+         return repository.findAll().list();
+
+    }
+
     @POST
     @Transactional
-    public Biblioteca inserir(Biblioteca NovaBiblioteca) {
-        Biblioteca.persist(NovaBiblioteca);
-        Date data = new Date();
-        NovaBiblioteca.setDataCompra(data);
-        NovaBiblioteca.setDescricao("Teste o novo");
-        NovaBiblioteca.setLocalEstante(120.212);
-        NovaBiblioteca.setQuantidade(12);
+    public Biblioteca insert(Biblioteca biblioteca) {
 
-        return  NovaBiblioteca;
+        repository.persist(biblioteca);
+
+        return biblioteca;
     }
 
     @PUT
@@ -49,34 +50,37 @@ public class ControleBiblioteca {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Biblioteca uptadte(@PathParam("id") Long id, Biblioteca atualizaBiblioteca) {
+    public Biblioteca update(@PathParam("id") Long id, Biblioteca biblioteca) {
 
-        Biblioteca entity = atualizaBiblioteca.findById(id);
+         Biblioteca entity = repository.findById(id);
 
-        entity.setLocalEstante(12345);
-        entity.setDescricao("Novo livro");
+         entity.setDescricao(biblioteca.getDescricao());
+         entity.setDescricao(biblioteca.getDescricao());
 
         return entity;
     }
 
     @GET
-    public List<Biblioteca> findAll() {
-        return Biblioteca.listAll();
+    @Path("/count")
+    public long count(){
+        return repository.count();
     }
+    
     @GET
-    @Path("{id}")
-    public Biblioteca Buscaporid(@PathParam("id") Long id) {
-        Biblioteca BibliotecaEntityporid = Biblioteca.findById(id);
-        return BibliotecaEntityporid;
-    }
-    @DELETE
-    @Path("{id}")
-    @Transactional
-    public Biblioteca delete(@PathParam("id") Long id) {
-        Biblioteca BibliotecaEntity = Biblioteca.findById(id);
-        BibliotecaEntity.delete();
+    @Path("/search/{descricao}")
+    public List<Biblioteca> search(@PathParam("idLivro") Integer idLivro){
+        
+        return repository.findByIdLivro(idLivro);
 
-        return BibliotecaEntity;
+    }
+
+    @DELETE
+    @Path("{idLivro}")
+    @Transactional
+    public List<Biblioteca> delete(@PathParam("idLivro") Integer idLivro) {
+        
+        return repository.findByIdLivro(idLivro);
     
     }
+
 }
