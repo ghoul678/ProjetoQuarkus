@@ -26,7 +26,7 @@ import javax.ws.rs.DELETE;
 public class ControleBiblioteca {
    
     @Inject
-    public Bibliotecarepository repository;
+     Bibliotecarepository repository;
     
     @GET
     public List<Biblioteca> getAll() {
