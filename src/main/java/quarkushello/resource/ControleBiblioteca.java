@@ -13,12 +13,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.DELETE;
 
 import quarkushello.model.Biblioteca;
 import quarkushello.repository.Bibliotecarepository;
 //import quarkushello.repository.Bibliotecarepository;
-
-import javax.ws.rs.DELETE;
 
 @Path("/biblioteca")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -71,7 +70,6 @@ public class ControleBiblioteca {
     public List<Biblioteca> search(@PathParam("idLivro") Integer idLivro){
         
         return repository.findByIdLivro(idLivro);
-
     }
 
     @DELETE
@@ -79,8 +77,7 @@ public class ControleBiblioteca {
     @Transactional
     public List<Biblioteca> delete(@PathParam("idLivro") Integer idLivro) {
         
-        return repository.findByIdLivro(idLivro);
-    
+        return repository.findByIdLivro(idLivro);    
     }
 
 }
