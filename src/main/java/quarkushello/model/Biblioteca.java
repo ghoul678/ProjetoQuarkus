@@ -3,51 +3,56 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
 
 @Entity
-public class Biblioteca extends PanacheEntity{
+public class Biblioteca  {
     @Id
-    Integer idLivro ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Integer idLivro ;
     @Column
-    Date dataCompra;
+    //@ManyToOne
+   private Date dataCompra;
     @Column
-    Integer quantidade;
+    private Integer quantidade;
     @Column
-    String descricao;
+   private String descricao;
     @Column
-    double localEstante;
+    private double localEstante;
 
-    public Integer getIdLivro() {
+    private Integer getIdLivro() {
         return idLivro;
     }
-    public void setIdLivro(Integer idLivro) {
+    private void setIdLivro(Integer idLivro) {
         this.idLivro = idLivro;
     }
-    public Date getDataCompra() {
+    private Date getDataCompra() {
         return dataCompra;
     }
-    public void setDataCompra(Date dataCompra) {
+    private void setDataCompra(Date dataCompra) {
         this.dataCompra = dataCompra;
     }
-    public Integer getQuantidade() {
+    private Integer getQuantidade() {
         return quantidade;
     }
-    public void setQuantidade(Integer quantidade) {
+    private void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
-    public String getDescricao() {
+    private String getDescricao() {
         return descricao;
     }
-    public void setDescricao(String descricao) {
+    private void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public double getLocalEstante() {
+    private double getLocalEstante() {
         return localEstante;
     }
-    public void setLocalEstante(double localEstante) {
+    private void setLocalEstante(double localEstante) {
         this.localEstante = localEstante;
     }
 
