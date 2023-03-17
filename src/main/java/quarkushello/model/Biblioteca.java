@@ -14,44 +14,44 @@ import javax.persistence.ManyToOne;
 public class Biblioteca  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Integer idLivro ;
+  private Integer idLivro ;
     @Column
     //@ManyToOne
-   private Date dataCompra;
+  private Date dataCompra;
     @Column
-    private Integer quantidade;
+   private Integer quantidade;
     @Column
-   private String descricao;
+  private String descricao;
     @Column
-    private double localEstante;
+   private double localEstante;
 
-    private Integer getIdLivro() {
+   public Integer getIdLivro() {
         return idLivro;
     }
-    private void setIdLivro(Integer idLivro) {
+   public void setIdLivro(Integer idLivro) {
         this.idLivro = idLivro;
     }
-    private Date getDataCompra() {
+   public Date getDataCompra() {
         return dataCompra;
     }
-    private void setDataCompra(Date dataCompra) {
+   public void setDataCompra(Date dataCompra) {
         this.dataCompra = dataCompra;
     }
-    private Integer getQuantidade() {
+   public Integer getQuantidade() {
         return quantidade;
     }
-    private void setQuantidade(Integer quantidade) {
+   public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
-    private String getDescricao() {
+   public String getDescricao() {
         return descricao;
     }
-    private void setDescricao(String descricao) {
+   public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    private double getLocalEstante() {
+   public double getLocalEstante() {
         return localEstante;
     }
-    private void setLocalEstante(double localEstante) {
+   public void setLocalEstante(double localEstante) {
         this.localEstante = localEstante;
     }   }
