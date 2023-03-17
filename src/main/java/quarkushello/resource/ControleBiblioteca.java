@@ -1,10 +1,6 @@
 package quarkushello.resource;
 
-<<<<<<< HEAD
 import java.util.Date;
-=======
-//import java.util.Date;
->>>>>>> a45a0e9778e640120535c94ab3f6b1257d0b9d49
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,11 +16,7 @@ import javax.ws.rs.core.MediaType;
 
 import quarkushello.model.Biblioteca;
 import quarkushello.repository.Bibliotecarepository;
-<<<<<<< HEAD
 import quarkushello.repository.Bibliotecarepository;
-=======
-//import quarkushello.repository.Bibliotecarepository;
->>>>>>> a45a0e9778e640120535c94ab3f6b1257d0b9d49
 
 import javax.ws.rs.DELETE;
 
@@ -34,11 +26,7 @@ import javax.ws.rs.DELETE;
 public class ControleBiblioteca {
    
     @Inject
-<<<<<<< HEAD
     private Bibliotecarepository repository;
-=======
-     Bibliotecarepository repository;
->>>>>>> a45a0e9778e640120535c94ab3f6b1257d0b9d49
     
     @GET
     public List<Biblioteca> getAll() {
