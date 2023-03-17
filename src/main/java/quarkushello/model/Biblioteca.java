@@ -1,6 +1,8 @@
 package quarkushello.model;
-import java.util.Date;
 
+//Trabalho colaborativo André e Nicole
+
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a45a0e9778e640120535c94ab3f6b1257d0b9d49
 @Entity
 public class Biblioteca  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
    private Integer idLivro ;
+=======
+    Integer idLivro ;
+>>>>>>> a45a0e9778e640120535c94ab3f6b1257d0b9d49
     @Column
     //@ManyToOne
    private Date dataCompra;
@@ -54,11 +63,5 @@ public class Biblioteca  {
     }
     private void setLocalEstante(double localEstante) {
         this.localEstante = localEstante;
-    }
-
-    
-
-    
-
-    
+    }    
 }

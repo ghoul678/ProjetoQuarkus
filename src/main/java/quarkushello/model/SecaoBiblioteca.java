@@ -14,10 +14,17 @@ public class SecaoBiblioteca {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_secao;
 
+<<<<<<< HEAD
     /* @Column
     @ManyToOne
     @JoinColumn(name = "id_Biblioteca")
     private Biblioteca biblioteca; */
+=======
+    @Column
+    @ManyToOne
+    @JoinColumn(name = "id_Biblioteca")
+    private Biblioteca biblioteca;
+>>>>>>> a45a0e9778e640120535c94ab3f6b1257d0b9d49
 
     public Integer getId_secao() {
         return id_secao;
