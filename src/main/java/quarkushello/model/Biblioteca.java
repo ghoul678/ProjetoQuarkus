@@ -54,11 +54,4 @@ public class Biblioteca  {
     }
     private void setLocalEstante(double localEstante) {
         this.localEstante = localEstante;
-    }
-
-    
-
-    
-
-    
-}
+    }   }
