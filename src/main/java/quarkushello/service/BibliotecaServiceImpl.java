@@ -14,14 +14,14 @@ import javax.ws.rs.NotFoundException;
 
 import quarkushello.DTO.BibliotecaDTO;
 import quarkushello.DTO.BibliotecaResponseDTO;
-import quarkushello.model.biblioteca;
-import quarkushello.repository.BibliotecaRepository;
+import quarkushello.model.Biblioteca;
+import quarkushello.repository.Bibliotecarepository;
 
 @ApplicationScoped
 public class BibliotecaServiceImpl implements BibliotecaService {
 
     @Inject
-    BibliotecaRepository bibliotecaRepository;
+    Bibliotecarepository bibliotecaRepository;
 
     @Inject
     Validator validator;
@@ -33,8 +33,8 @@ public class BibliotecaServiceImpl implements BibliotecaService {
     }
 
     @Override
-    public BibliotecaResponseDTO findById(Long idLivro) {
-        Biblioteca biblioteca = bibliotecaRepository.findById(idLivro);
+    public BibliotecaResponseDTO findByIdLivro(Integer idLivro) {
+        Biblioteca biblioteca = bibliotecaRepository.findByIdLivro(idLivro);
         if (biblioteca == null)
             throw new NotFoundException("Livro não encontrado! ");
         return new BibliotecaResponseDTO(biblioteca);
@@ -48,8 +48,8 @@ public class BibliotecaServiceImpl implements BibliotecaService {
             throw new ConstraintViolationException(violations);
 
         Biblioteca entity = new Biblioteca();
-        //entity.setIdLivro(bibliotecaDTO.getIdLivro());
-        //entity.setEstado(bibliotecaRepository.findById(bibliotecaDTO.getIdEstado()));
+        entity.setIdLivro(bibliotecaDTO.getIdLivro());
+        //entity.setEstado(bibliotecaRepository.findByIdLivro(bibliotecaDTO.getIdEstado()));
         bibliotecaRepository.persist(entity);
 
         return new BibliotecaResponseDTO(entity);
@@ -57,29 +57,30 @@ public class BibliotecaServiceImpl implements BibliotecaService {
 
     @Override
     @Transactional
-    public BibliotecaResponseDTO update(Long idLivro, BibliotecaDTO bibliotecaDTO) {
-        Biblioteca entity = bibliotecaRepository.findById(idLivro);
+    public BibliotecaResponseDTO update(Integer idLivro, BibliotecaDTO bibliotecaDTO) {
+        Biblioteca entity = bibliotecaRepository.findByIdLivro(idLivro);
 
-        //entity.setNome(bibliotecaDTO.getNome());
-        //entity.setEstado(bibliotecaRepository.findById(bibliotecaDTO.getIdEstado()));
+        entity.idLivro(bibliotecaDTO.getIdLivro());
+        //entity.setIdLivro(bibliotecaRepository.findByIdLivro(bibliotecaDTO.getIdLivro()));
 
         return new BibliotecaResponseDTO(entity);
     }
 
     @Override
     @Transactional
-    public void delete(Long idLivro) {
-        bibliotecaRepository.deleteById(idLivro);
+    public void delete(Integer idLivro) {
+        bibliotecaRepository.deleteByIdLivro(idLivro);
     }
 
+    /*
     @Override
-    public List<BibliotecaResponseDTO> findByNome(String nome) {
-        //List<Biblioteca> list = bibliotecaRepository.findByNome(nome);
+    public List<BibliotecaResponseDTO> findByIdLivro(Integer idLivro) {
+        List<Biblioteca> list = bibliotecaRepository.findByIdLivro(idLivro);
         return list.stream().map(BibliotecaResponseDTO::new).collect(Collectors.toList());
-    }
+    }*/
 
     @Override
-    public long count() {
+    public Integer count() {
         return bibliotecaRepository.count();
     }
 

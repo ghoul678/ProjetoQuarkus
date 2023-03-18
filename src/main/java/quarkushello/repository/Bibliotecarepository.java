@@ -14,10 +14,13 @@ public class Bibliotecarepository implements PanacheRepository<Biblioteca> {
         return find("UPPER(id) LIKE ?1 ", "%"+id.toUpperCase()+"%").list();
     }
  
-    public List<Biblioteca> findByIdLivro(Integer idLivro){
+    /*public List<Biblioteca> findByIdLivro(Integer idLivro){
     return find("UPPER(id) LIKE ?1 ", "%"+idLivro+"%").list();
     }
 
+    public List<Biblioteca> findByIdSecao(Integer id_secao){
+    return find("UPPER(id) LIKE ?1 ", "%"+id_secao+"%").list();
+    }*/
 }
 
 

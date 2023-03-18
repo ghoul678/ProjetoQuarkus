@@ -11,7 +11,7 @@ public class BibliotecaDTO {
     private Integer quantidade;
     private String descricao;
     private double localEstante;
-    
+
     public Integer getIdLivro() {
         return idLivro;
     }

@@ -4,19 +4,23 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import quarkushello.model.Biblioteca;
 import quarkushello.repository.Bibliotecarepository;
-import quarkushello.repository.Bibliotecarepository;
+import quarkushello.service.BibliotecaService;
+import quarkushello.DTO.BibliotecaResponseDTO;
+import quarkushello.DTO.BibliotecaDTO;
 
 import javax.ws.rs.DELETE;
 
@@ -26,61 +30,44 @@ import javax.ws.rs.DELETE;
 public class ControleBiblioteca {
    
     @Inject
-    private Bibliotecarepository repository;
+    BibliotecaService bibliotecaService;
     
     @GET
-    public List<Biblioteca> getAll() {
-        
-        // seleciona todas as Bibliotecas do banco de dados
-         return repository.findAll().list();
+    public List<BibliotecaResponseDTO> getAll() {
+        return bibliotecaService.getAll();
+    }
 
+    @GET
+    @Path("/{id}")
+    public BibliotecaResponseDTO findByIdLivro(@PathParam("id") Integer id) {
+        return bibliotecaService.findByIdLivro(id);
     }
 
     @POST
-    @Transactional
-    public Biblioteca insert(Biblioteca biblioteca) {
-
-        repository.persist(biblioteca);
-
-        return biblioteca;
+    public Response insert(BibliotecaDTO dto) {
+        BibliotecaResponseDTO biblioteca = bibliotecaService.create(dto);
+        return Response.status(Status.CREATED).entity(biblioteca).build();
     }
 
     @PUT
     @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Biblioteca update(@PathParam("id") Long id, Biblioteca biblioteca) {
-
-         Biblioteca entity = repository.findById(id);
-
-         entity.setDescricao(biblioteca.getDescricao());
-         entity.setDescricao(biblioteca.getDescricao());
-
-        return entity;
+    public Response update(@PathParam("id") Integer id, BibliotecaDTO dto) {
+        BibliotecaResponseDTO biblioteca = bibliotecaService.update(id, dto);
+        return Response.status(Status.NO_CONTENT).build();
     }
 
     @GET
     @Path("/count")
     public long count(){
-        return repository.count();
-    }
-    
-    @GET
-    @Path("/search/{descricao}")
-    public List<Biblioteca> search(@PathParam("idLivro") Integer idLivro){
-        
-        return repository.findByIdLivro(idLivro);
-
+        return bibliotecaService.count();
     }
 
     @DELETE
     @Path("{idLivro}")
-    @Transactional
-    public List<Biblioteca> delete(@PathParam("idLivro") Integer idLivro) {
-        
-        return repository.findByIdLivro(idLivro);
-    
+    //@Transactional
+    public Response delete(@PathParam("id") Integer id) {
+        bibliotecaService.delete(id);
+        return Response.status(Status.NO_CONTENT).build();
     }
 
 }

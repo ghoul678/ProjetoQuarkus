@@ -10,17 +10,17 @@ public interface BibliotecaService {
     // recursos basicos
     List<BibliotecaResponseDTO> getAll();
 
-    BibliotecaResponseDTO findById(Long idLivro);
+    BibliotecaResponseDTO findByIdLivro(Integer idLivro);
 
-    //BibliotecaResponseDTO create(bibliotecaDTO productDTO);
+    BibliotecaResponseDTO create(BibliotecaDTO productDTO);
 
-    //BibliotecaResponseDTO update(Long idLivro, bibliotecaDTO productDTO);
+    BibliotecaResponseDTO update(Integer idLivro, BibliotecaDTO productDTO);
 
-    void delete(Long idLivro);
+    void delete(Integer idLivro);
 
     // recursos extras
-    //List<BibliotecaResponseDTO> findByNome(String nome);
+    //List<BibliotecaResponseDTO> findByIdLivro(Integer idLivro);
 
-    long count();
+    Integer count();
 
 }
