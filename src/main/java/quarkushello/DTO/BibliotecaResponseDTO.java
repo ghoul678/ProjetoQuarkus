@@ -4,17 +4,14 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 import quarkushello.model.Biblioteca;
+
 public class BibliotecaResponseDTO {
 
     private Map<String, Object> Biblioteca;
     private Integer idLivro ;
-    
     private Date dataCompra;
-
     private Integer quantidade;
-
     private String descricao;
-
     private double localEstante;
 
     public BibliotecaResponseDTO(Map<String, Object> biblioteca, Integer idLivro, Date dataCompra, Integer quantidade,
@@ -74,6 +71,5 @@ public class BibliotecaResponseDTO {
     public void setLocalEstante(double localEstante) {
         this.localEstante = localEstante;
     }
-
-        
+       
 }

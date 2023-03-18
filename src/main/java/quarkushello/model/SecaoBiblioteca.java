@@ -1,4 +1,5 @@
 package quarkushello.model;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +10,12 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class SecaoBiblioteca {
+    
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_secao;
 
-   
     @ManyToOne
     @JoinColumn(name = "idlivro")
     private Biblioteca biblioteca;
@@ -34,4 +35,5 @@ public class SecaoBiblioteca {
     public void setBiblioteca(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     } 
+
 }
